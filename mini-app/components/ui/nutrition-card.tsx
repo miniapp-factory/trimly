@@ -3,6 +3,15 @@
 import { useEffect, useState } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "./card";
 
+interface Meal {
+  name: string;
+  calories: number;
+  carbs: number;
+  protein: number;
+  fat: number;
+  date: string;
+}
+
 export function NutritionCard() {
   const [totalCalories, setTotalCalories] = useState(0);
   const [totalCarbs, setTotalCarbs] = useState(0);
@@ -14,9 +23,9 @@ export function NutritionCard() {
   useEffect(() => {
     const stored = localStorage.getItem("meals");
     if (stored) {
-      const meals = JSON.parse(stored);
+      const meals = JSON.parse(stored) as Meal[];
       const totals = meals.reduce(
-        (acc: any, m: any) => {
+        (acc: Meal, m: Meal) => {
           acc.calories += m.calories;
           acc.carbs += m.carbs;
           acc.protein += m.protein;

@@ -11,9 +11,11 @@ export function InsightCard() {
   useEffect(() => {
     const stored = localStorage.getItem("meals");
     if (stored) {
-      const meals = JSON.parse(stored);
+      const meals = JSON.parse(stored) as Array<{
+        calories: number;
+      }>;
       const totalCalories = meals.reduce(
-        (sum: number, m: any) => sum + m.calories,
+        (sum: number, m: { calories: number }) => sum + m.calories,
         0
       );
       if (totalCalories < 1500) {
