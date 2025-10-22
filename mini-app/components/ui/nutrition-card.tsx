@@ -25,7 +25,7 @@ export function NutritionCard() {
     if (stored) {
       const meals = JSON.parse(stored) as Meal[];
       const totals = meals.reduce(
-        (acc: Meal, m: Meal) => {
+        (acc, m) => {
           acc.calories += m.calories;
           acc.carbs += m.carbs;
           acc.protein += m.protein;
